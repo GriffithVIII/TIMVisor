@@ -1,3 +1,4 @@
+using System.Windows.Forms;
 using TIMVisor.Graphics.PNG;
 using TIMVisor.Helpers;
 
@@ -37,7 +38,7 @@ namespace TIMVisor
             string type = file.SubItems[1].Text;
 
             var bmp = FileHandler.GetTIMConverted(path, type);
-            //DisplayConvertedTexture(bmp);
+            DisplayConvertedTexture(bmp);
         }
 
         private void FolderView_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -55,6 +56,20 @@ namespace TIMVisor
         private void CopyButton_Click(object sender, EventArgs e)
         {
             Clipboard.SetDataObject(textureBox.Image);
+        }
+
+        private void ExportButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog oExport = new();
+            oExport.Filter = "Portable Network Graphics PNG|*.png";
+            oExport.Title = "Save an Image File";
+            oExport.ShowDialog();
+            if (oExport.FileName != "")
+            {
+                FileStream fs = (FileStream)oExport.OpenFile();
+                textureBox.Image.Save(fs, System.Drawing.Imaging.ImageFormat.Png);
+                fs.Close();
+            }
         }
     }
 }

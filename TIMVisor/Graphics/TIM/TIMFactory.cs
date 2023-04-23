@@ -12,6 +12,13 @@ namespace TIMVisor.Graphics.TIMLib
     public class TIMFactory
     {
         public static TIM tim = new();
+
+        public static TIM Get4BPPTexture(string file)
+        {
+            var tim = Get8BPPTexture(file);
+            return tim;
+        }
+
         public static TIM Get8BPPTexture(string file)
         {
             FileInfo f = new(file);
@@ -24,9 +31,20 @@ namespace TIMVisor.Graphics.TIMLib
             return tim;
         }
 
-        public static TIM Get4BPPTexture(string file)
+        public static TIM Get16BPPTexture(string file)
         {
-            var tim = Get8BPPTexture(file);
+            FileInfo f = new(file);
+            BinaryReader DR = new(f.OpenRead());
+
+            ReadTIMHeader(DR);
+            ReadImageHeader(DR);
+
+            return tim;
+        }
+
+        public static TIM Get24BPPTexture(string file)
+        {
+            var tim = Get16BPPTexture(file);
             return tim;
         }
 
@@ -46,7 +64,7 @@ namespace TIMVisor.Graphics.TIMLib
             image.Width = DR.ReadUInt16();
             image.Height = DR.ReadUInt16();
 
-            for(int i = 0; i < image.Length / 2; i++)
+            for(int i = 0; i < image.Length - 0xC; i++)
             {
                 image.Data.Add(DR.ReadByte());
             }

@@ -32,5 +32,19 @@ namespace TIMVisor.Graphics.PNG
                    $"{g.ToString("X").PadLeft(2, '0')}" +
                    $"{b.ToString("X").PadLeft(2, '0')}";
         }
+
+        public static CLUTEntry GetCLUTColor(UInt16 entry)
+        {
+            CLUTEntry cColor = new();
+            cColor.Entry = entry;
+            var color = cColor.Entry;
+
+            cColor.R = (byte)((color >> 0) & 0x1f);
+            cColor.G = (byte)((color >> 5) & 0x1f);
+            cColor.B = (byte)((color >> 10) & 0x1f);
+            cColor.STP = (byte)((color >> 15) & 1);
+
+            return cColor;
+        }
     }
 }

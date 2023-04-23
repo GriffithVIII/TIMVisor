@@ -35,6 +35,9 @@
             cType = new ColumnHeader();
             cSize = new ColumnHeader();
             CopyButton = new Button();
+            ExportButton = new Button();
+            ImportButton = new Button();
+            FileButton = new Button();
             ((System.ComponentModel.ISupportInitialize)textureBox).BeginInit();
             SuspendLayout();
             // 
@@ -42,9 +45,9 @@
             // 
             LoadFolder.Location = new Point(0, 0);
             LoadFolder.Name = "LoadFolder";
-            LoadFolder.Size = new Size(97, 23);
+            LoadFolder.Size = new Size(72, 23);
             LoadFolder.TabIndex = 0;
-            LoadFolder.Text = "Open Folder";
+            LoadFolder.Text = "Folder";
             LoadFolder.UseVisualStyleBackColor = true;
             LoadFolder.Click += LoadFolder_Click;
             // 
@@ -84,7 +87,7 @@
             // 
             // CopyButton
             // 
-            CopyButton.Location = new Point(468, 0);
+            CopyButton.Location = new Point(720, 0);
             CopyButton.Name = "CopyButton";
             CopyButton.Size = new Size(75, 23);
             CopyButton.TabIndex = 6;
@@ -92,11 +95,42 @@
             CopyButton.UseVisualStyleBackColor = true;
             CopyButton.Click += CopyButton_Click;
             // 
+            // ExportButton
+            // 
+            ExportButton.Location = new Point(226, 0);
+            ExportButton.Name = "ExportButton";
+            ExportButton.Size = new Size(75, 23);
+            ExportButton.TabIndex = 7;
+            ExportButton.Text = "Export";
+            ExportButton.UseVisualStyleBackColor = true;
+            ExportButton.Click += ExportButton_Click;
+            // 
+            // ImportButton
+            // 
+            ImportButton.Location = new Point(150, 0);
+            ImportButton.Name = "ImportButton";
+            ImportButton.Size = new Size(75, 23);
+            ImportButton.TabIndex = 8;
+            ImportButton.Text = "Import";
+            ImportButton.UseVisualStyleBackColor = true;
+            // 
+            // FileButton
+            // 
+            FileButton.Location = new Point(73, 0);
+            FileButton.Name = "FileButton";
+            FileButton.Size = new Size(75, 23);
+            FileButton.TabIndex = 9;
+            FileButton.Text = "File";
+            FileButton.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1052, 561);
+            Controls.Add(FileButton);
+            Controls.Add(ImportButton);
+            Controls.Add(ExportButton);
             Controls.Add(CopyButton);
             Controls.Add(FolderView);
             Controls.Add(textureBox);
@@ -116,5 +150,8 @@
         private ColumnHeader cType;
         private ColumnHeader cSize;
         private Button CopyButton;
+        private Button ExportButton;
+        private Button ImportButton;
+        private Button FileButton;
     }
 }

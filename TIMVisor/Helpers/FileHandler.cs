@@ -2,6 +2,7 @@
 using TIMVisor.Helpers;
 using TIMVisor.Graphics.Format;
 using TIMVisor.Graphics.TIMLib;
+using TIMVisor.Graphics.PNG;
 
 namespace TIMVisor.Helpers
 {
@@ -49,35 +50,35 @@ namespace TIMVisor.Helpers
             return filtered;
         }
 
-        public static string GetTIMConverted(string file, string type)
+        public static Bitmap GetTIMConverted(string file, string type)
         {
-            string a = "";
             TIM tim = new();
-            //if (type == "4BPP")
-            //{
-            //    (var tim, var clut) = TIM_MSFactory.GetContainerConverted8BPP4BPP(path);
-            //    Bitmap bmp = PNGFactory.GetPNG4BPP(tim, clut);
-            //    DisplayConvertedTexture(bmp);
-            //}
-            if (type == "8BPP")
+            if (type == "4BPP")
+            {
+                tim = TIMFactory.Get4BPPTexture(file);
+                Bitmap bmp = PNGFactory.GetPNG4BPP(tim);
+                return bmp;
+            }
+            else if (type == "8BPP")
             {
                 tim = TIMFactory.Get8BPPTexture(file);
                 Bitmap bmp = PNGFactory.GetPNG8BPP(tim);
+                return bmp;
             }
-            //else if (type == "16BPP")
-            //{
-            //    var tim = TIM_MSFactory.GetContainerConverted16BPP(path);
-            //    Bitmap bmp = PNGFactory.GetImage16BPP(tim);
-            //    DisplayConvertedTexture(bmp);
-            //}
-            //else if (type == "24BPP")
-            //{
-            //    var tim = TIM_MSFactory.GetContainerConverted16BPP(path);
-            //    Bitmap bmp = PNGFactory.GetImage16BPP(tim);
-            //    
-            //}
+            else if (type == "16BPP")
+            {
+                tim = TIMFactory.Get16BPPTexture(file);
+                Bitmap bmp = PNGFactory.GetPNG16BPP(tim);
+                return bmp;
+            }
+            else if (type == "24BPP")
+            {
+                tim = TIMFactory.Get24BPPTexture(file);
+                Bitmap bmp = PNGFactory.GetPNG24BPP(tim);
+                return bmp;
+            }
 
-            return a;
+            return null;
         }
     }
 }
