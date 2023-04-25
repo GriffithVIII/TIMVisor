@@ -7,7 +7,7 @@
 - [To-Do List](#to-do-list)
 
 # TIMVisor
-TIMVision is a converter for the PlayStation 1 TIM graphics format. It has support for 4BPP, 8BPP, 16BPP and 24BPP, as well as an exporter and importer in .PNG and .TIM formats.
+TIMVisor is a converter for the PlayStation 1 TIM graphics format. It has support for 4BPP, 8BPP, 16BPP and 24BPP, as well as an exporter and importer in .PNG and .TIM formats.
 
 ![image](https://user-images.githubusercontent.com/51249452/234389718-f056230a-1d09-48d3-b165-ece5e62abc45.png)
 
