@@ -5,7 +5,7 @@
         public int MagicNum { get; set; }
         public int Version { get; set; }
         public CLUT CLUT { get; set; }
-        public Pixel Image { get; set; }
+        public Tex Image { get; set; }
 
         public TIM()
         {
@@ -15,7 +15,7 @@
         }
     }
 
-    public class Pixel
+    public class Tex
     {
         public int Length { get; set; }
         public UInt16 VRAM_X { get; set; }
@@ -24,7 +24,7 @@
         public UInt16 Height { get; set; }
         public List<byte> Data { get; set; }
 
-        public Pixel()
+        public Tex()
         {
             Data = new();
         }
@@ -62,5 +62,33 @@
         public byte B { get; set; }
         public byte G { get; set; }
         public byte R { get; set; }
+    }
+
+    public class Version2BPP
+    {
+        public Dictionary<int, int> BitsPerPixel { get; set; }
+
+        public Version2BPP()
+        {
+            BitsPerPixel = new()
+            {
+                { 8, 4 }, { 9, 8 },
+                { 2, 16 }, { 3, 24 },
+            };
+        }
+    }
+
+    public class BPP2Version
+    {
+        public Dictionary<int, int> Version { get; set; }
+
+        public BPP2Version()
+        {
+            Version = new()
+            {
+                { 4, 8 }, { 8, 9 },
+                { 16, 2 }, { 24, 3 },
+            };
+        }
     }
 }

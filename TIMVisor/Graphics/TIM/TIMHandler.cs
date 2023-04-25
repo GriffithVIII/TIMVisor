@@ -1,5 +1,6 @@
-﻿using System;
+﻿using TIMVisor.Graphics.Format;
 using TIMVisor.Helpers;
+using TIMVisor.Graphics.Palette;
 
 namespace TIMVisor.Graphics.TIMLib
 {
@@ -22,6 +23,54 @@ namespace TIMVisor.Graphics.TIMLib
                 bpp = "UNSUPPORTED";
 
             return bpp;
+        }
+
+        public static CLUTBlock MakeCLUTBlock(Bitmap bmp)
+        {
+            CLUTBlock block = new();
+
+            var palette = PaletteFactory.GetImagePalette(bmp);
+
+            foreach (Color iColor in palette.Values)
+            {
+                var cColor = PaletteFactory.CLUTFromHTML(iColor);
+                block.Entries.Add(cColor);
+            }
+
+            return block;
+        }
+
+        public static CLUTBlock PreserveCLUTColors(List<string> preserved)
+        {
+            CLUTBlock block = new();
+
+            var palette = PaletteFactory.GetPreservedPalette(preserved);
+
+            foreach (Color iColor in palette.Values)
+            {
+                var cColor = PaletteFactory.CLUTFromHTML(iColor);
+                block.Entries.Add(cColor);
+            }
+
+            return block;
+        }
+
+        public static TIM PreserveData(INI ini, TIM tim)
+        {
+            BPP2Version get = new();
+
+            //# Copy original TIM data
+            tim.Version = get.Version[ini.BPP];
+
+            //# Copy original Texture data
+            tim.Image.VRAM_X = ini.Texture.VRAM_X;
+            tim.Image.VRAM_Y = ini.Texture.VRAM_Y;
+
+            //# Copy original CLUT data
+            tim.CLUT.VRAM_X = ini.CLUT.VRAM_X;
+            tim.CLUT.VRAM_Y = ini.CLUT.VRAM_Y;
+
+            return tim;
         }
     }
 }
