@@ -21,3 +21,4 @@ BPP stands for `Bits Per Pixel`, it denotes the number of bits per pixel. The TI
 
 - Transparent color picker (in most cases black).
 - Support for multi-Blocks CLUT.
+- Palette preservation.
