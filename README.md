@@ -1,4 +1,4 @@
-# Table of contents:
+# Contents
 - [TIMVisor](#timvisor)
 - [Dependecies](#dependecies)
 - [TIM Format](#tim-format)
